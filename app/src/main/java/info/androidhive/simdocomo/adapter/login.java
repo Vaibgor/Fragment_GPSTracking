@@ -115,9 +115,16 @@ public class login extends Activity {
 
     // updated by vaibhav pote on 16/05/2016
     public void btnLogin() {
-        if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
-            Toast.makeText(login.this, "Please Enter Username Or Password", Toast.LENGTH_LONG).show();
-        } else {
+
+            if (username.getText().toString().length()==0){
+                //Toast.makeText(getApplicationContext(), "Username cannot be Blank", Toast.LENGTH_LONG).show();
+                username.setError("username cannot be Blank");
+            }else if (password.getText().toString().length()==0){
+               // Toast.makeText(getApplicationContext(), "Password cannot be Blank", Toast.LENGTH_LONG).show();
+                password.setError("Password cannot be Blank");
+            }else if (username.getText().toString().equals("") || password.getText().toString().equals("")){
+                Toast.makeText(login.this, "Please Enter Username Or Password", Toast.LENGTH_LONG).show();
+            }else {
             int success1;
             List<NameValuePair> params2 = new ArrayList<NameValuePair>();
             params2.add(new BasicNameValuePair("username", username.getText().toString()));

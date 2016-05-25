@@ -139,8 +139,7 @@ public class category2 {
     }
 
 
-    public category2(String pro, String uname, String dob,String area,
-                     String img) {
+    public category2(String pro, String uname, String dob,String area) {
         // TODO Auto-generated constructor stub
         //super();
 
@@ -149,8 +148,7 @@ public class category2 {
 
         this.first_name = uname;
 
-        this.age = dob;
-        this.imageurl = img;
+        this.age = dob;//this.imageurl = img;
         this.location=area;
         // Log.d("In constructor imageurl", this.imageurl);
     }

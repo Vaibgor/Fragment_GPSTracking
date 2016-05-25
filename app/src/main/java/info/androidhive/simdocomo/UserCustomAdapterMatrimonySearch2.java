@@ -54,16 +54,17 @@ public class UserCustomAdapterMatrimonySearch2 extends ArrayAdapter<category2> {
         final String temp = member.getUid();
         final  String name=member.getFirstName();
         //	 holder.uid.setText(member.getUid());
-        if (member.getImage() != null) {
+        /*if (member.getImage() != null) {
             Log.d("In if ", "in if member.getImage()");
            // holder.image.setImageBitmap(member.getImage());
             holder.image.setImageResource(R.drawable.gold);
         } else {
             Log.d("In Else ", "in else member.getImage()");
             //holder.image.setImageResource(R.drawable.profilepic);
-        }
+        }*/
 
         // holder.srno.setText(member.getSrno());
+        holder.image.setImageResource(R.drawable.gold);
         holder.fname.setText(member.getFirstName());
         holder.age.setText(member.getAge());
         //	 holder.lname.setText(member.getLastName());

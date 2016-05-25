@@ -159,7 +159,7 @@ public class category {
 
 
     public category(String pro, String ac_no, String dob,String area,
-                    String img,String code,String name) {
+                    String code,String name) {
         // TODO Auto-generated constructor stub
         //super();
 
@@ -169,7 +169,7 @@ public class category {
         this.first_name = ac_no;
 
         this.age = dob;
-        this.imageurl = img;
+        //this.imageurl = img;
         this.location=area;
         this.code = code;
         this.name1=name;

@@ -64,7 +64,6 @@ public class open extends Fragment {
     }
 
     public open(String feed, String name, String val,String agency_id) {
-        //Toast.makeText(getActivity(), "User id is =" + feed,Toast.LENGTH_LONG).show();
         this.code = feed;
         this.name = name;
         this.queryval = val;
@@ -130,8 +129,8 @@ public class open extends Fragment {
                         uname = c.getString("cust_name");
                         imgname = c.getString("segment");
 
-                        img = URLConfig.Imgage;
-                        userArray.add(new category(pro, ac_no, uname, loc, img, code, name));
+                        //img = URLConfig.Imgage;
+                        userArray.add(new category(pro, ac_no, uname, loc, code, name));
                     }
 
                 }

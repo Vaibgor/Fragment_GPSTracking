@@ -128,10 +128,10 @@ public class pending_sync extends Fragment {
                         uname = c.getString("cust_name");
                         imgname = c.getString("segment");
 
-                        img = URLConfig.Imgage;
+                        //img = URLConfig.Imgage;
                         // img = "http://herbalifeaurangabad.com/msib2013/Pravachan/images/gm4.jpg";
 
-                        userArray.add(new category2(pro, ac_no, uname,ac_no, img));
+                        userArray.add(new category2(pro, ac_no, uname,ac_no));
                     }
 
 
