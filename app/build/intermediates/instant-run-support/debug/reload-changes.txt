@@ -1,0 +1,2 @@
+CHANGED,D:\Vaibhav\TabsWithSwipeGesture\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\info\androidhive\simdocomo\adapter\login$override.class
+CHANGED,D:\Vaibhav\TabsWithSwipeGesture\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background1" >
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" >
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FOS_Status"
+                android:textColor="#3d1010"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="21dp"
+                android:id="@+id/textView31" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="FOS Status"
+                    android:paddingLeft="10dp"
+                    android:textSize="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/report_edittext"
+                    android:id="@+id/spinner"
+                    />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:id="@+id/imageView"
+                    android:src="@drawable/down"
+                    android:background="#3d1010"
+                    android:layout_gravity="right|center_vertical" />
+            </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scenerio"
+                android:textColor="#3d1010"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="21dp"
+                android:id="@+id/textView32" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Issue"
+                    android:paddingLeft="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/report_edittext"
+                    android:id="@+id/spinner2" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:id="@+id/imageView2"
+                    android:src="@drawable/down"
+                    android:background="#3d1010"
+                    android:layout_gravity="right|center_vertical" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VOC"
+                android:textColor="#3d1010"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="21dp"
+                android:id="@+id/textView34" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/frame_voc"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="VOC"
+                    android:paddingLeft="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/report_edittext"
+                    android:id="@+id/spinner4" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:id="@+id/imageView4"
+                    android:src="@drawable/down"
+                    android:background="#3d1010"
+                    android:layout_gravity="right|center_vertical" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/framl9">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Date"
+                    android:paddingLeft="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/report_edittext"
+                    android:id="@+id/editText9" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:id="@+id/imageView7"
+                    android:src="@drawable/cal"
+                    android:background="#3d1010"
+                    android:layout_gravity="right|center_vertical" />
+            </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment"
+                android:textColor="#3d1010"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="21dp"
+                android:id="@+id/textView33" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/frame_payment1" >
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Payment"
+                    android:paddingLeft="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/report_edittext"
+                    android:id="@+id/spinner3" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:id="@+id/imageView3"
+                    android:src="@drawable/down"
+                    android:background="#3d1010"
+                    android:layout_gravity="right|center_vertical" />
+            </FrameLayout>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editText5"
+                android:hint="Amount Paid"
+                android:inputType="number"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/report_edittext"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment Mode"
+                android:textColor="#3d1010"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="21dp"
+                android:id="@+id/textView35" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/frame_payment"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Payment Mode"
+                    android:paddingLeft="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/report_edittext"
+                    android:id="@+id/spinner8" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:id="@+id/imageView8"
+                    android:src="@drawable/down"
+                    android:background="#3d1010"
+                    android:layout_gravity="right|center_vertical" />
+            </FrameLayout>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editText10"
+                android:hint="Receipt No"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/report_edittext"
+                />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:id="@+id/editText6"
+                android:inputType="textMultiLine"
+                android:hint="Remarks"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/report_edittext"
+                />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editText7"
+                android:hint="Alternate Mobile No"
+                android:inputType="number"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/report_edittext"
+                />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editText8"
+                android:hint="Alternate Email"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/report_edittext"
+                />
+
+
+
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:text="Submit"
+                android:textStyle="bold"
+                android:id="@+id/button5"
+                android:background="#3d1010"
+                android:layout_marginTop="25dp"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background1">
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView2"
+        android:padding="15dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/edittext_shape"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Account Number"
+                    android:textStyle="bold"
+                    android:id="@+id/textView1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="90987576767"
+                    android:layout_marginLeft="20dp"
+                    android:textStyle="bold"
+                    android:id="@+id/textView2" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Area"
+
+                    android:textStyle="bold"
+                    android:id="@+id/textView3" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SEC 44"
+                    android:layout_marginLeft="20dp"
+                    android:textStyle="bold"
+                    android:id="@+id/textView4" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="DEL Number"
+
+                    android:textStyle="bold"
+                    android:id="@+id/textView5" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="767675543"
+                    android:layout_marginLeft="20dp"
+                    android:textStyle="bold"
+                    android:id="@+id/textView6" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Bill Cycle"
+
+                    android:id="@+id/textView7" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="M05"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/textView8" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Contact No"
+                    android:id="@+id/textView9" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="767675543"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/textView10" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Custmer Name"
+                    android:textStyle="bold"
+                    android:id="@+id/textView11" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="jmk"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/textView12" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textStyle="bold"
+                    android:id="@+id/textView13" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:text="S/ORam Nivas H NO 2022 SEC 44 C Chandigarh"
+                    android:id="@+id/textView14" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+
+                    android:text="Total Outstanding"
+                    android:id="@+id/textView15" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:text="2162/-"
+                    android:id="@+id/textView16" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/r"
+                    android:id="@+id/image" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Poduct"
+
+                    android:textStyle="bold"
+                    android:id="@+id/textView17" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="GSM"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/textView18" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/gsm"
+
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/image3" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Previews Note"
+
+                    android:textStyle="bold"
+                    android:id="@+id/textView19" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="null"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/textView20" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Total DEL"
+                    android:id="@+id/textView21" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:text="1"
+                    android:id="@+id/textView22" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+
+                    android:text="Segment"
+                    android:id="@+id/textView23" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:text="Gold"
+                    android:id="@+id/textView24" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/gold"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/image4" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="ACC Status"
+                    android:id="@+id/textView25" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Active"
+                    android:layout_marginLeft="20dp"
+                    android:textStyle="bold"
+                    android:id="@+id/textView26" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/active"
+                    android:id="@+id/image2" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+
+                    android:text="Calling Status"
+                    android:id="@+id/textView27" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:text="null"
+                    android:id="@+id/textView28" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+
+                    android:text="Calling VOC"
+                    android:id="@+id/textView29" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:text="null"
+                    android:id="@+id/textView30" />
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="bottom">
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="Wrong Allocation"
+                android:background="@drawable/brown_bg"
+                android:textAlignment="center"
+                android:id="@+id/button2"
+                android:layout_marginRight="5dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="Case Query"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/brown_bg"
+                android:textAlignment="center"
+                android:id="@+id/button3"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

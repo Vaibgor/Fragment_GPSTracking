@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">128dp</dimen>
+    <dimen name="list_row_height_radio">100dp</dimen>
+    <dimen name="top_margin">60dp</dimen>
+</resources>
