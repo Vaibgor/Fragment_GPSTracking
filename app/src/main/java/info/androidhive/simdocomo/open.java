@@ -1,5 +1,6 @@
 package info.androidhive.simdocomo;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -28,40 +33,22 @@ import java.util.List;
 import info.androidhive.simdocomo.adapter.URLConfig;
 
 /**
- * Created by User on 2/18/2016.
+ * Created by Vaibhav on 20/05/2016.
+ * updated by vaibhav pote on 26/05/2016
  */
 public class open extends Fragment {
-
-
-    private static final int MODE_PRIVATE = 4355;
-    int status = 0;
-    int numberPc = 0;
     JSONParser jsonParser = new JSONParser();
 
-    private String last, first;
-    private static final String TAG_SUCCESS6 = "success6", TAG_SUCCESS1 = "success1";
-    private static final String TAG_PRODUCTS6 = "assemblyconstituency", TAG_PRODUCTS1 = "products1";
-    JSONArray products6 = null, products1 = null;
-    private static final String TAG_PID1 = "pid1";
-    private static final String TAG_NAME6 = "name1", TAG_NAME1 = "name1";
-    String pro, id;
-    public static final String mypreference = "mypref";
-    public static final String Name = "namekey";
-
-    public static final String MyPREFERENCES = "MyPrefs";
+    private static final String TAG_SUCCESS1 = "success1";
+    private static final String TAG_PRODUCTS1 = "products1";
+    JSONArray products1 = null;
     SharedPreferences sharedpreferences;
     ListView list;
-    GridView category;
-    View rootView;
-    Context context;
     ProgressDialog pDialog;
-    int[] imageId;
-    String code, agency_id, name, queryval;
+    String code, agency_id, name, queryval, segmentImage,id;
     ArrayList<category> userArray = new ArrayList<category>();
-    UserCustomAdapterMatrimonySearch userAdapter;
-
-    public open() {
-    }
+    OpenListCustomAdapter userAdapter;
+    public open() {}
 
     public open(String feed, String name, String val,String agency_id) {
         this.code = feed;
@@ -78,13 +65,11 @@ public class open extends Fragment {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-//Toast.makeText(getActivity(),"query value from mainactivity2"+queryval,Toast.LENGTH_LONG).show();
         list = (ListView) rootView.findViewById(R.id.listview);
-        //  Toast.makeText(getActivity(), code, Toast.LENGTH_SHORT).show();
-        new getList().execute();
+        new getOpenListData().execute();
         return rootView;
     }
-    private class getList extends AsyncTask<String, String, ArrayList<category>> {
+    private class getOpenListData extends AsyncTask<String, String, ArrayList<category>> {
         int success1;
 
         @Override
@@ -98,7 +83,6 @@ public class open extends Fragment {
             Log.d("ImageLoadTask", "Loading image...");
         }
 
-        // param[0] is img url
         protected ArrayList<category> doInBackground(String... param) {
             ArrayList<category> userArray1 = new ArrayList<category>();
             Log.d("setGrid back", "In setGriddata on do in background");
@@ -107,32 +91,24 @@ public class open extends Fragment {
             params3.add(new BasicNameValuePair("queryval", queryval));
             JSONObject json3 = jsonParser.makeHttpRequest(URLConfig.OpenList, "POST", params3);
             Log.d("Open Customer list", json3.toString());
-
             try {
                 final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
                 HashMap<String, String> map;
                 success1 = json3.getInt(TAG_SUCCESS1);
                 if (success1 == 1) {
                     products1 = json3.getJSONArray(TAG_PRODUCTS1);
-                    //   String[]  pro = new String[products1.length()];
-                    String name1[] = new String[products1.length()];
-                    String name2[] = new String[products1.length()];
-
-                    String pro, uname, ac_no, loc, imgname = null, img = null;
+                    String rec_id, custName, ac_no, location;
+                    if (userArray.size()==0){
                     for (int i1 = 0; i1 < products1.length(); i1++) {
                         JSONObject c = products1.getJSONObject(i1);
-
-                        // String id = c.getString(TAG_PID1);
-                        pro = c.getString("rec_id");
+                        rec_id = c.getString("rec_id");
                         ac_no = c.getString("account_no");
-                        loc = c.getString("location");
-                        uname = c.getString("cust_name");
-                        imgname = c.getString("segment");
-
-                        //img = URLConfig.Imgage;
-                        userArray.add(new category(pro, ac_no, uname, loc, code, name));
+                        location = c.getString("location");
+                        custName = c.getString("cust_name");
+                        segmentImage = c.getString("segment");
+                        userArray.add(new category(rec_id, ac_no, custName, location, code, name,segmentImage));
+                        }
                     }
-
                 }
             } catch (JSONException e) {
 
@@ -146,14 +122,8 @@ public class open extends Fragment {
             Log.d("setGrid on post", "In setGriddata on post");
             if (success1 == 1) {
                 Log.d("setGrid if success", "In setGriddata on if success is 1");
-                userAdapter = new UserCustomAdapterMatrimonySearch(getActivity(), R.layout.list_row, userArray,agency_id);
-                //        list = (ListView)rootView. findViewById(R.id.listview);
+                userAdapter = new OpenListCustomAdapter(getActivity(), R.layout.list_row, userArray,agency_id);
                 list.setAdapter(userAdapter);
-
-                for (category m : userArray) {
-                    // START LOADING IMAGES FOR EACH STUDENT
-                    m.loadImage(userAdapter);
-                }
             } else {
                 Log.d("setGrid else success ", "In setGriddata on else success is 0");
             }
@@ -161,34 +131,84 @@ public class open extends Fragment {
         }
     }
 
-    public void viewMemberInfo(final String listSelectedId1) {
-        Intent intent = null;
-        try {
-            intent = new Intent(getActivity(), MainActivity.class);
+    //custom adpter to bind list row data to the custom list view
+    // created by vaibhav pote on 26/05/2016
+    public class OpenListCustomAdapter extends ArrayAdapter<category> {
 
-        } catch (Exception e) {
-
+        Context context;
+        int layoutResourceId;
+        String agency_id;
+        ArrayList<category> data = new ArrayList<category>();
+        public OpenListCustomAdapter(Context context, int layoutResourceId,
+                                                ArrayList<category> data, String agency_id) {
+            super(context, layoutResourceId, data);
+            this.layoutResourceId = layoutResourceId;
+            this.context = context;
+            this.data = data;
+            this.agency_id = agency_id;
         }
-        intent.putExtra("cat_it", listSelectedId1);
-        intent.putExtra("vendor_code", code);
-        startActivity(intent);
 
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            View list = convertView;
+            UserHolder holder = null;
+            if (list == null) {
+                LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+                list = inflater.inflate(layoutResourceId, parent, false);
+                holder = new UserHolder();
+                holder.image = (ImageView) list.findViewById(R.id.imageView4);
 
-    }
+                holder.fname = (TextView) list.findViewById(R.id.textView1);
+                holder.age = (TextView) list.findViewById(R.id.textView2);
+                holder.area = (TextView) list.findViewById(R.id.textView3);
 
-    public void quervalue(final String listSelectedId1) {
-        Intent intent = null;
-        try {
-            intent = new Intent(getActivity(), MainActivity.class);
+                list.setTag(holder);
+            } else {
+                holder = (UserHolder) list.getTag();
+            }
+            category member = data.get(position);
+            final String temp = member.getRec_id();
+            final String cust_name = member.getCustName();
+            final String accNo = member.getAcc_no();
+            final String name1 = member.getName1();
+            final String code = member.getCode();
+            final String segmentImage = member.getSegmentImage();
 
-        } catch (Exception e) {
+            if (segmentImage.equals("A")){
+                holder.image.setImageResource(R.drawable.plattinum_type);
+            }else if (segmentImage.equals("B")){
+                holder.image.setImageResource(R.drawable.gold_type);
+            }else if (segmentImage.equals("C")){
+                holder.image.setImageResource(R.drawable.silver_type);
+            }
 
+            holder.fname.setText(member.getAcc_no());
+            holder.age.setText(member.getCustName());
+            holder.area.setText(member.getLocation());
+
+            // onClick listRow get affected and data pass to the next activity
+            list.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent op = new Intent(context, MainActivity.class);
+                    op.putExtra("cat_it", temp);
+                    op.putExtra("cust_name", cust_name);
+                    op.putExtra("name", name1);
+                    op.putExtra("code", code);
+                    op.putExtra("account_no", accNo);
+                    op.putExtra("agency_id", agency_id);
+                    op.putExtra("segment", segmentImage);
+                    context.startActivity(op);
+                }
+            });
+            return list;
         }
-        intent.putExtra("cat_it", listSelectedId1);
-        intent.putExtra("vendor_code", code);
-        startActivity(intent);
 
-
+        private class UserHolder {
+            TextView area;
+            ImageView image;
+            TextView age;
+            TextView fname;
+        }
     }
-
 }

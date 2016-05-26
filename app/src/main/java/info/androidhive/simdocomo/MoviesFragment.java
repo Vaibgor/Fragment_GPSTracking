@@ -14,7 +14,6 @@ import android.widget.ImageView;
 public class MoviesFragment extends Fragment {
     public MoviesFragment() {
     }
-
     private static final int CAMERA_REQUEST = 1888;
 
 

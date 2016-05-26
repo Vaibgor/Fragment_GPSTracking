@@ -35,38 +35,17 @@ import info.androidhive.simdocomo.adapter.URLConfig;
 
 public class GamesFragment extends Fragment {
     Spinner fos, issue, payment, voc, payment_type;
-    EditText amount, a_mobile, a_email, remark, receipt;
+    EditText eddate,amount, a_mobile, a_email, remark, receipt;
     Button submit;
-    String recid;
-    String id_fos, name_fos[], scenerio_id, scenerio[], scenerio_reason_id, scenerio_reason[];
-
-    int status = 0;
-    int numberPc = 0;
     JSONParser jsonParser = new JSONParser();
-
-    private String last, first;
-    private static final String TAG_SUCCESS6 = "success6", TAG_SUCCESS1 = "success1";
-    private static final String TAG_PRODUCTS6 = "assemblyconstituency", TAG_PRODUCTS1 = "products1";
-    JSONArray products6 = null, products1 = null;
-    private static final String TAG_PID1 = "pid1";
-    private static final String TAG_NAME6 = "name1", TAG_NAME1 = "name1";
+    private static final String TAG_SUCCESS1 = "success1";
+    private static final String TAG_PRODUCTS1 = "products1";
+    JSONArray products1 = null;
     int success1;
-    String foc_spin[] = {"FOS Status", "contact", "Not Contact"};
-    String issue_spin[] = {"Scenerio", "contact", "Not contact"};
     String paymrnt_spin[] = {"NA", "Paid", "Unpaid"};
     String paymenttype[] = {"NA", "Cash", "Cheque", "Online"};// updated by vaibhav on 17/05/2016 add 0th position
-    String voc_spin[] = {"Voc", "UMR, customer not paying without bill", "inappropriate / incorrect / frequent barring", "not OK with credit limit / credit rating", "too many collection calls / contacts"};
-    String fos_name;
-    String payment_mode;
-    String issue_name;
-    String payment_name;
-    String voc_name;
-    String amt;
-    String rmk;
-
+    String recid,id_fos,voc_name,payment_name,issue_name,fos_name,payment_mode;
     ImageView caldate;
-    EditText eddate;
-    private Calendar cal;
     private int day;
     private int month;
     private int year;
@@ -80,17 +59,12 @@ public class GamesFragment extends Fragment {
     public GamesFragment(String feed) {
         this.recid = feed;
     }
-
-    public GamesFragment() {
-    }
-
+    public GamesFragment() {}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_games, container, false);
-
-        //Toast.makeText(getActivity(), "report=" +recid, Toast.LENGTH_SHORT).show();
         fos = (Spinner) rootView.findViewById(R.id.spinner);
         issue = (Spinner) rootView.findViewById(R.id.spinner2);
         payment = (Spinner) rootView.findViewById(R.id.spinner3);
@@ -117,13 +91,9 @@ public class GamesFragment extends Fragment {
         caldate = (ImageView) rootView.findViewById(R.id.imageView7);
 
         amount.addTextChangedListener(new TextWatcher() {
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-                if (!s.equals("")) { //do your work here }
-                }
-
-            }
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.equals("")) { //do your work here
+                }}
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
 
@@ -138,8 +108,6 @@ public class GamesFragment extends Fragment {
         });
 
         a_mobile.addTextChangedListener(new TextWatcher() {
-
-
             public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
                 if (!s.equals("")) { //do your work here }
@@ -161,7 +129,6 @@ public class GamesFragment extends Fragment {
             }
         });
         a_email.addTextChangedListener(new TextWatcher() {
-
 
             public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
@@ -185,7 +152,6 @@ public class GamesFragment extends Fragment {
         });
 
         receipt.addTextChangedListener(new TextWatcher() {
-
 
             public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
@@ -213,9 +179,7 @@ public class GamesFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
                 if (!s.equals("")) { //do your work here }
-                }
-
-            }
+                }}
 
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
@@ -231,11 +195,7 @@ public class GamesFragment extends Fragment {
             }
         });
 
-
         List<NameValuePair> params1 = new ArrayList<NameValuePair>();
-        //  String id=String.valueOf(temp);
-
-        //      JSONObject json1 = jsonParser.makeHttpRequest("http://herbalifeaurangabad.com/msib2013/Pravachan/android/listvideo.php", "POST", params1);
         JSONObject json1 = jsonParser.makeHttpRequest(URLConfig.FOS_Status, "POST", params1);
         Log.d("FOS_Status", json1.toString());
         try {
@@ -243,39 +203,21 @@ public class GamesFragment extends Fragment {
             HashMap<String, String> map;
             success1 = json1.getInt(TAG_SUCCESS1);
             if (success1 == 1) {
-
                 products1 = json1.getJSONArray(TAG_PRODUCTS1);
-                //   String[]  pro = new String[products1.length()];
-
 
                 String name_fos[] = new String[products1.length()];
                 String name2[] = new String[products1.length()];
 
-                String ac_no, imgname = null, img = null;
-                //	id_fos="0";name_fos[-1]="select";
                 for (int i1 = 0; i1 < products1.length(); i1++) {
                     JSONObject c = products1.getJSONObject(i1);
-
-
-                    // String id = c.getString(TAG_PID1);
                     id_fos = c.getString("fos_id");
-                    //	name_fos[i1]=c.getString("select");
                     name_fos[i1] = c.getString("fos");
-
                     ArrayAdapter adapter11 = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, name_fos);
-                    //ArrayAdapter adapter11 = ArrayAdapter.createFromResource(this, R.array.name_fos, R.layout.simple_spinner_item);
                     adapter11.setDropDownViewResource(R.layout.spinner_dropdown_item);
                     fos.setAdapter(adapter11);
-
-                    //ArrayAdapter adapter11 = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, name_fos);
-                    //fos.setAdapter(adapter11);
                 }
             }
-        } catch (JSONException e) {
-
-            e.printStackTrace();
-        }
-
+        } catch (JSONException e) {e.printStackTrace();}
 
         fos.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
@@ -285,7 +227,6 @@ public class GamesFragment extends Fragment {
                                 payment_name, amount.getText().toString(), remark.getText().toString(),
                                 payment_mode, a_mobile.getText().toString(), a_email.getText().toString(),
                                 receipt.getText().toString());
-                        //		Toast.makeText(getActivity(),"fos pos"+pos,Toast.LENGTH_SHORT).show();
                         switch (pos) {
                             case 1:
                                 //not contact
@@ -306,14 +247,15 @@ public class GamesFragment extends Fragment {
                                 dateframe.setVisibility(View.VISIBLE);
                                 vocframe.setVisibility(View.GONE);
                                 txvoc.setVisibility(View.GONE);
-                                amount.setVisibility(View.VISIBLE);
-                                txt_payment.setVisibility(view.VISIBLE);
-                                pay_frame.setVisibility(view.VISIBLE);
-                                pay_mode.setVisibility(view.VISIBLE);
-                                pay_mode_frame.setVisibility(view.VISIBLE);
-                                a_mobile.setVisibility(view.VISIBLE);
-                                a_email.setVisibility(view.VISIBLE);
-                                receipt.setVisibility(view.VISIBLE);
+                                amount.setVisibility(View.GONE);
+                                txt_payment.setVisibility(view.GONE);
+                                pay_frame.setVisibility(view.GONE);
+                                pay_mode.setVisibility(view.GONE);
+                                pay_mode_frame.setVisibility(view.GONE);
+                                a_mobile.setVisibility(view.GONE);
+                                a_email.setVisibility(view.GONE);
+                                receipt.setVisibility(view.GONE);
+                                remark.setVisibility(view.VISIBLE);
                                 break;
                             default:
                                 dateframe.setVisibility(View.GONE);
@@ -342,26 +284,15 @@ public class GamesFragment extends Fragment {
                             if (success1 == 1) {
 
                                 products1 = json2.getJSONArray(TAG_PRODUCTS1);
-                                //   String[]  pro = new String[products1.length()];
                                 String scenerio[] = new String[products1.length()];
-                                String name2[] = new String[products1.length()];
-
-                                String ac_no, imgname = null, img = null;
                                 for (int i1 = 0; i1 < products1.length(); i1++) {
                                     JSONObject c = products1.getJSONObject(i1);
-
-
-                                    // String id = c.getString(TAG_PID1);
                                     id_fos = c.getString("scenarioid");
                                     scenerio[i1] = c.getString("scenario");
 
                                     ArrayAdapter adapter2 = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, scenerio);
                                     adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
                                     issue.setAdapter(adapter2);
-
-
-                                    //ArrayAdapter adapter2 = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, scenerio);
-                                    //issue.setAdapter(adapter2);
                                 }
                             }
                         } catch (JSONException e) {
@@ -403,19 +334,12 @@ public class GamesFragment extends Fragment {
                                                             android.R.layout.simple_spinner_item, scenerio_reason);
                                                     adapter4.setDropDownViewResource(R.layout.spinner_dropdown_item);
                                                     voc.setAdapter(adapter4);
-
-                                                    //ArrayAdapter adapter4 = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, scenerio_reason);
-                                                    //voc.setAdapter(adapter4);
                                                 }
                                             }
                                         } catch (JSONException e) {
 
                                             e.printStackTrace();
                                         }
-
-                                        //	ArrayAdapter a4 = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, voc_spin);
-                                        //	a4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                        //	voc.setAdapter(a4);
                                         voc.setOnItemSelectedListener(
                                                 new AdapterView.OnItemSelectedListener() {
                                                     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -425,18 +349,11 @@ public class GamesFragment extends Fragment {
                                                                 amount.getText().toString(), remark.getText().toString(),
                                                                 payment_mode, a_mobile.getText().toString(),
                                                                 a_email.getText().toString(), receipt.getText().toString());
-                                                        // nmofMP.setText(parliMentory);
                                                     }
 
-                                                    public void onNothingSelected(AdapterView<?> parent) {
-
-                                                    }
-                                                });
+                                                    public void onNothingSelected(AdapterView<?> parent) {}});
                                     }
-
-                                    public void onNothingSelected(AdapterView<?> parent) {
-
-                                    }
+                                    public void onNothingSelected(AdapterView<?> parent) {}
                                 });
 
                     }
@@ -446,8 +363,6 @@ public class GamesFragment extends Fragment {
                     }
                 });
 
-        //s="uiogfudoifug";//amount.getText().toString();
-        //amt=amount.getText().toString();
         ArrayAdapter a3 = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, paymrnt_spin);
         a3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         payment.setAdapter(a3);
@@ -460,7 +375,6 @@ public class GamesFragment extends Fragment {
                                 payment_mode, a_mobile.getText().toString(), a_email.getText().toString(),
                                 receipt.getText().toString());
                         switch (pos) {
-
                             //updated by vaibhav pote on 17/05/2016
                             // add extra fields in spi(--)at 0th position
                             case 1:
@@ -482,21 +396,9 @@ public class GamesFragment extends Fragment {
                                 a_email.setVisibility(view.GONE);
                                 receipt.setVisibility(view.GONE);
                                 break;
-                         /*   default:
-                                amount.setVisibility(View.GONE);
-                                pay_mode.setVisibility(view.GONE);
-                                pay_mode_frame.setVisibility(view.GONE);
-                                a_mobile.setVisibility(view.GONE);
-                                a_email.setVisibility(view.GONE);
-                                receipt.setVisibility(view.GONE);
-                                break;*/
                         }
-                        // nmofMP.setText(parliMentory);
                     }
-
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
+                    public void onNothingSelected(AdapterView<?> parent) {}
                 });
 
 
@@ -510,13 +412,8 @@ public class GamesFragment extends Fragment {
                         payment_name, amount.getText().toString(), remark.getText().toString(),
                         payment_mode, a_mobile.getText().toString(), a_email.getText().toString(),
                         receipt.getText().toString());
-
-                // nmofMP.setText(parliMentory);
             }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         final Calendar cal = Calendar.getInstance();
@@ -528,13 +425,10 @@ public class GamesFragment extends Fragment {
         day = cal.get(Calendar.DAY_OF_MONTH);
 
         caldate.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 createFancyDateTimePicker(DATE_PICKER_ID).show();//DATE_PICKER_ID
-
             }
         });
 
@@ -548,7 +442,6 @@ public class GamesFragment extends Fragment {
                         mDateSetListener,
                         year, month, day);
         }
-
         return null;
     }
 
@@ -560,8 +453,6 @@ public class GamesFragment extends Fragment {
             month = monthOfYear;
             day = dayOfMonth;
             eddate.setText(new StringBuilder().append(day).append("/").append(month + 1).append("/").append(year));
-
         }
-
     };
 }

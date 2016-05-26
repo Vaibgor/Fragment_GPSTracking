@@ -40,12 +40,9 @@ public class TabsPagerAdapter2 extends FragmentPagerAdapter {
             case 2:
                 // Movies fragment activity
                 return new pending_sync(feed1, name1);
-
         }
-
         return null;
     }
-
     @Override
     public int getCount() {
         // get item count - equal to number of tabs

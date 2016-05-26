@@ -1,107 +1,43 @@
 package info.androidhive.simdocomo;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
-
-import java.io.InputStream;
-import java.net.URL;
-
+//modified my vaibhav pote on 26/05/2016
+// deleted unnecessary data
+// model class use for Open class
 public class category {
-    String name1;
-    String address;
-    String location;
-    String imageurl;
-    String age;
-    int srno;
-    String u_id;
-    String first_name;
-    String last_name;
-    String code;
-    String name;
-    private Bitmap image;
-    private UserCustomAdapterMatrimonySearch userAdapter;
-
-
-    public int getSrno() {
-        return srno;
-    }
-
-    public void setSrno(int srno) {
-        this.srno = srno;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getImgUrl() {
-        return imageurl;
-    }
-
-    public void setImgUrl(String imageurl) {
-        this.imageurl = imageurl;
-    }
-
-
-    public Bitmap getImage() {
-        Log.d("image", "get image");
-        return image;
-    }
-
-    public String getUid() {
-        return u_id;
-    }
-
-    public void setUid(String u_id) {
-        this.u_id = u_id;
-    }
-
-    public String getFirstName() {
-        return first_name;
-    }
-
-    public void setFirstName(String first_name) {
-        this.first_name = first_name;
-    }
-
-
-    public String getArea() {
-        return location;
-    }
-
-    public void setArea(String location) {
+    String rec_id,acc_no,custName,name1, segmentImage,code, location;
+    public category(){}
+    public category(String rec_id, String ac_no, String custName, String location,
+                    String code, String name, String segmentImage) {
+        this.rec_id = rec_id;
+        this.acc_no = ac_no;
+        this.custName = custName;
         this.location = location;
-    }
-    public String getLastName() {
-        return last_name;
-    }
-
-    public void setLastName(String last_name) {
-        this.last_name = last_name;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String age) {
         this.code = code;
+        this.name1 = name;
+        this.segmentImage = segmentImage;
+    }
+
+    public String getRec_id() {
+        return rec_id;
+    }
+
+    public void setRec_id(String rec_id) {
+        this.rec_id = rec_id;
+    }
+
+    public String getAcc_no() {
+        return acc_no;
+    }
+
+    public void setAcc_no(String acc_no) {
+        this.acc_no = acc_no;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
     }
 
     public String getName1() {
@@ -112,104 +48,27 @@ public class category {
         this.name1 = name1;
     }
 
-    public UserCustomAdapterMatrimonySearch getAdapter() {
-        return userAdapter;
+    public String getCode() {
+        return code;
     }
 
-    public void setAdapter(UserCustomAdapterMatrimonySearch userAdapter) {
-        this.userAdapter = userAdapter;
-    }
-
-    public void loadImage(UserCustomAdapterMatrimonySearch userAdapter) {
-        // HOLD A REFERENCE TO THE ADAPTER
-        this.userAdapter = userAdapter;
-        if (imageurl != null && !imageurl.equals("")) {
-            new ImageLoadTask().execute(imageurl);
-        }
-    }
-
-    public category(String name, String address) {
-        super();
-        Log.d("User ", "member constructor is called");
-        this.name = name;
-        this.address = address;
-        //this.location = location;
-    }
-
-    public category(String u_id, String first_name, String last_name) {
-        // TODO Auto-generated constructor stub
-        super();
-        Log.d("user", "member constructor is called");
-
-        this.image = null;
-        this.u_id = u_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-    }
-
-    public category(String u_id, int i, String first_name, String last_name) {
-        // TODO Auto-generated constructor stub
-        super();
-        this.u_id = u_id;
-        this.srno = i;
-        this.first_name = first_name;
-        this.last_name = last_name;
-
-    }
-
-
-    public category(String pro, String ac_no, String dob,String area,
-                    String code,String name) {
-        // TODO Auto-generated constructor stub
-        //super();
-
-        // Log.d("In constructor", filename);
-        this.u_id = pro;
-
-        this.first_name = ac_no;
-
-        this.age = dob;
-        //this.imageurl = img;
-        this.location=area;
+    public void setCode(String code) {
         this.code = code;
-        this.name1=name;
-        // Log.d("In constructor imageurl", this.imageurl);
     }
 
-    private class ImageLoadTask extends AsyncTask<String, String, Bitmap> {
+    public String getSegmentImage() {
+        return segmentImage;
+    }
 
-        @Override
-        protected void onPreExecute() {
-            Log.d("ImageLoadTask", "Loading image...");
-        }
+    public void setSegmentImage(String segmentImage) {
+        this.segmentImage = segmentImage;
+    }
 
-        // param[0] is img url
-        protected Bitmap doInBackground(String... param) {
-            //   Log.d("ImageLoadTask", "Attempting to load image URL: " + param[0]);
-            try {
-                Bitmap b = BitmapFactory.decodeStream((InputStream) new URL(param[0]).getContent());
-                return b;
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
+    public String getLocation() {
+        return location;
+    }
 
-        protected void onProgressUpdate(String... progress) {
-            // NO OP
-        }
-
-        protected void onPostExecute(Bitmap ret) {
-            if (ret != null) {
-                //    Log.d("ImageLoadTask", "Successfully loaded ");
-                image = ret;
-                if (userAdapter != null) {
-                    // WHEN IMAGE IS LOADED NOTIFY THE ADAPTER
-                    userAdapter.notifyDataSetChanged();
-                }
-            } else {
-                //       Log.e("ImageLoadTask", "Failed to load ");
-            }
-        }
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

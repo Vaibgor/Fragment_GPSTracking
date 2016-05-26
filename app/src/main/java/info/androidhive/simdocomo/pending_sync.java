@@ -1,5 +1,6 @@
 package info.androidhive.simdocomo;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -33,7 +37,7 @@ import info.androidhive.simdocomo.adapter.URLConfig;
  */
 public class pending_sync extends Fragment {
 
-
+public pending_sync(){}
     int status = 0;
     int numberPc = 0;
     JSONParser jsonParser = new JSONParser();
@@ -58,7 +62,7 @@ public class pending_sync extends Fragment {
     int[] imageId ;
     String code,vendor_codename,name;
     ArrayList<category2> userArray = new ArrayList<category2>();
-    UserCustomAdapterMatrimonySearch2 userAdapter;
+    PendingListCustomAdapter userAdapter;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     public pending_sync(String feed,String name) {
@@ -81,10 +85,7 @@ public class pending_sync extends Fragment {
 
         new getList().execute();
         return rootView;
-
     }
-
-
     private class getList extends AsyncTask<String, String, ArrayList<category2>> {
         int success1;
 
@@ -118,7 +119,7 @@ public class pending_sync extends Fragment {
                     String name1[] = new String[products1.length()];
                     String name2[] = new String[products1.length()];
 
-                    String  pro, uname,ac_no, imgname = null, img = null;
+                    String  pro, uname,ac_no,segment;
                     for (int i1 = 0; i1 < products1.length(); i1++) {
                         JSONObject c = products1.getJSONObject(i1);
                         // String id = c.getString(TAG_PID1);
@@ -126,16 +127,13 @@ public class pending_sync extends Fragment {
                         ac_no=c.getString("account_no");
 
                         uname = c.getString("cust_name");
-                        imgname = c.getString("segment");
+                        segment = c.getString("segment");
 
                         //img = URLConfig.Imgage;
                         // img = "http://herbalifeaurangabad.com/msib2013/Pravachan/images/gm4.jpg";
 
-                        userArray.add(new category2(pro, ac_no, uname,ac_no));
+                        userArray.add(new category2(pro, ac_no, uname,segment));
                     }
-
-
-
                 }
             } catch (JSONException e) {
 
@@ -143,24 +141,13 @@ public class pending_sync extends Fragment {
             }
             return userArray1;
         }
-
-
-
         protected void onPostExecute(ArrayList<category2> userArray1) {
 
             Log.d("setGrid on post", "In setGriddata on post");
             if(success1==1){
                 Log.d("setGrid if success", "In setGriddata on if success is 1" );
-                userAdapter = new UserCustomAdapterMatrimonySearch2(getActivity(), R.layout.list_row, userArray
-                );
-                //        list = (ListView)rootView. findViewById(R.id.listview);
+                userAdapter = new PendingListCustomAdapter(getActivity(), R.layout.list_row, userArray);
                 list.setAdapter(userAdapter);
-
-                for (category2 m : userArray) {
-                    // START LOADING IMAGES FOR EACH STUDENT
-                    m.loadImage(userAdapter);
-                }
-
             }else{
                 Log.d("setGrid else success ", "In setGriddata on else success is 0");
             }
@@ -168,22 +155,66 @@ public class pending_sync extends Fragment {
         }
     }
 
-    public void viewMemberInfo(final String listSelectedId1) {
-        Intent intent = null;
-        try {
-            intent = new Intent(getActivity(), MainActivity.class);
+    // updated by vaibhav pote on 26/05/2016
+    public class PendingListCustomAdapter extends ArrayAdapter<category2> {
 
-        } catch (Exception e) {
-
+        Context context;
+        int layoutResourceId;
+        ArrayList<category2> data = new ArrayList<category2>();
+        public PendingListCustomAdapter(Context context, int layoutResourceId,
+                                                 ArrayList<category2> data) {
+            super(context, layoutResourceId, data);
+            this.layoutResourceId = layoutResourceId;
+            this.context = context;
+            this.data = data;
         }
-        intent.putExtra("cat_it", listSelectedId1);
-        intent.putExtra("vendor_code", code);
-        startActivity(intent);
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            View list = convertView;
+            UserHolder holder = null;
+            if (list == null) {
+                LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+                list = inflater.inflate(layoutResourceId, parent, false);
+                holder = new UserHolder();
+                holder.image = (ImageView) list.findViewById(R.id.imageView4);
+                holder.segmentImage = (TextView) list.findViewById(R.id.textView3);
+                holder.fname = (TextView) list.findViewById(R.id.textView1);
+                holder.age = (TextView) list.findViewById(R.id.textView2);
 
 
+                list.setTag(holder);
+            } else {
+                holder = (UserHolder) list.getTag();
+            }
+            category2 member = data.get(position);
+            final String temp = member.getU_id();
+            final String segment = member.getSegment();
+            if (segment.equals("A")){
+                holder.segmentImage.setText("PLATINUM");
+                holder.image.setImageResource(R.drawable.plattinum_type);
+            }else if (segment.equals("B")){
+                holder.segmentImage.setText("GOLD");
+                holder.image.setImageResource(R.drawable.gold_type);
+            }else if (segment.equals("C")){
+                holder.segmentImage.setText("SILVER");
+                holder.image.setImageResource(R.drawable.silver_type);
+            }
 
+            holder.fname.setText(member.getFirst_name());
+            holder.age.setText(member.getAge());
+            list.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                }
+            });
+            return list;
+        }
+        private class UserHolder {
+            TextView segmentImage;
+            ImageView image;
+            TextView age;
+            TextView fname;
+        }
     }
-
-
 }
 

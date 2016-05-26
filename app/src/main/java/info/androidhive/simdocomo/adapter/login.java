@@ -135,6 +135,7 @@ public class login extends Activity {
                 final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
                 HashMap<String, String> map;
                 success1 = json2.getInt(TAG_SUCCESS1);
+                Log.i("Success=", String.valueOf(success1));
                 if (success1 == 1) {
 
                     products1 = json2.getJSONArray(TAG_PRODUCTS1);

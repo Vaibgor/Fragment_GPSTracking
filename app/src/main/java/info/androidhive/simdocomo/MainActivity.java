@@ -39,26 +39,13 @@ public class MainActivity extends FragmentActivity implements
         ActionBar.TabListener {
     GPSTracker gps;
     GPSTrackerService trackerService;
-    String strLat, strLong, strAddress;
-
+    JSONParser jsonParser = new JSONParser();
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
-    public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
-
-    String text1, text2, text3, text4, text5, text6, video_id, cust_name, code, name1, payment_mode, a_mobile, a_email, receipt, account_no;
-    int flag = 0;
-    JSONParser jsonParser = new JSONParser();
-
-    private String last, first;
-    private static final String TAG_SUCCESS6 = "success6", TAG_SUCCESS1 = "success1";
-    private static final String TAG_PRODUCTS6 = "assemblyconstituency", TAG_PRODUCTS1 = "products1";
-    JSONArray products6 = null, products1 = null;
-    private static final String TAG_PID1 = "pid1";
-    private static final String TAG_NAME6 = "name1", TAG_NAME1 = "name1";
-    int success1;
-    String vendor_code, agency_id;
+    String text1, text2, text3, text4, text5, text6, rec_id, cust_name, code, name1, payment_mode,
+            a_mobile, a_email, receipt, account_no, segment, strLat, strLong, strAddress,agency_id;
     // Tab titles
     private String[] tabs = {"Details", "Reports", "Images", "Videos"};
 
@@ -72,13 +59,15 @@ public class MainActivity extends FragmentActivity implements
         gps = new GPSTracker(this);
         trackerService = new GPSTrackerService();
 
+        //get data from open class
         Bundle bundle = getIntent().getExtras();
-        video_id = bundle.getString("cat_it");
+        rec_id = bundle.getString("cat_it");
         cust_name = bundle.getString("cust_name");
         code = bundle.getString("code");//vendor_code
         name1 = bundle.getString("name");
         account_no = bundle.getString("account_no");
         agency_id = bundle.getString("agency_id");
+        segment = bundle.getString("segment");
 
         ActionBar actionBar1 = getActionBar();
         actionBar1.setTitle("SIM");
@@ -99,7 +88,7 @@ public class MainActivity extends FragmentActivity implements
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
-        mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), video_id, code, name1);
+        mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), rec_id, code, name1,segment);
 
         viewPager.setAdapter(mAdapter);
         //	actionBar.setHomeButtonEnabled(false);
@@ -144,8 +133,6 @@ public class MainActivity extends FragmentActivity implements
         this.a_mobile = a_mobile;//a_mobile
         this.a_email = a_email;//a_email
         this.receipt = receipt;//receipt
-        //Receive new text here
-        //Toast.makeText(MainActivity.this, "pass value activity"+text1, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -186,7 +173,7 @@ public class MainActivity extends FragmentActivity implements
                 alertDialog.setIcon(R.drawable.msg);
 
                 // Setting Positive "Yes" Button
-                if (gps.canGetLocation()){
+                if (gps.canGetLocation()) {
                     alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             submitDataOnSubmit();
@@ -206,8 +193,6 @@ public class MainActivity extends FragmentActivity implements
                                 trackerService.trackGPS(agency_id, code, strLat, strLong, account_no, strAddress);
                                 Log.d("DialogOn GPS", agency_id + " " + code + " " + strLat + " " + strLong + " " + account_no);
                             }*/
-                            } else if (gps.canGetLocation()) {
-
                             }
                             // Write your code here to invoke YES event
                             Intent i = new Intent(MainActivity.this, MainActivity2.class);
@@ -217,10 +202,9 @@ public class MainActivity extends FragmentActivity implements
                             startActivity(i);
                         }
                     });
-                }else{
+                } else {
                     gps.showSettingsAlert();
                 }
-
                 // Setting Negative "NO" Button
                 alertDialog.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -248,13 +232,13 @@ public class MainActivity extends FragmentActivity implements
 
         Log.i("LATITUDE", String.valueOf(gps.getLatitude()));
         Log.i("LONGITUDE", String.valueOf(gps.getLongitude()));
-        int success1;
+        // submit dropdown data on web
         List<NameValuePair> params2 = new ArrayList<NameValuePair>();
         params2.add(new BasicNameValuePair("fos", text1));
         params2.add(new BasicNameValuePair("issue", text2));
         params2.add(new BasicNameValuePair("voc", text3));
         params2.add(new BasicNameValuePair("payment", text4));
-        params2.add(new BasicNameValuePair("rec_id", video_id));
+        params2.add(new BasicNameValuePair("rec_id", rec_id));
         params2.add(new BasicNameValuePair("amount_paid", text5));
         params2.add(new BasicNameValuePair("remarks", text6));
         params2.add(new BasicNameValuePair("code", code));
