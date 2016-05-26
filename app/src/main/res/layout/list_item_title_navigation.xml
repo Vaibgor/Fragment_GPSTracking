@@ -10,8 +10,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_launcher"
-        android:layout_marginRight="5dp"
-        />
+        android:layout_marginRight="5dp" />
     
     <TextView android:id="@+id/txtTitle"
         android:layout_width="wrap_content"

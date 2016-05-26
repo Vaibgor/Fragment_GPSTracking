@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="FOS_Status"
                 android:textColor="#3d1010"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="21dp"
                 android:id="@+id/textView31" />
 
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:text="Scenerio"
                 android:textColor="#3d1010"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="21dp"
                 android:id="@+id/textView32" />
             <FrameLayout
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:text="VOC"
                 android:textColor="#3d1010"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="21dp"
                 android:id="@+id/textView34" />
             <FrameLayout
@@ -135,7 +135,7 @@
                 android:layout_height="50dp"
                 android:layout_below="@+id/textView"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:id="@+id/framl9">
@@ -146,6 +146,8 @@
                     android:hint="Date"
                     android:paddingLeft="10dp"
                     android:layout_centerHorizontal="true"
+                    android:enabled="false"
+                    android:textColor="#000"
                     android:background="@drawable/report_edittext"
                     android:id="@+id/editText9" />
 
@@ -163,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:text="Payment"
                 android:textColor="#3d1010"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="21dp"
                 android:id="@+id/textView33" />
             <FrameLayout
@@ -211,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:text="Payment Mode"
                 android:textColor="#3d1010"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="21dp"
                 android:id="@+id/textView35" />
             <FrameLayout
@@ -283,12 +285,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="30dp"
-                android:background="@drawable/report_edittext"
-                />
-
-
-
-
+                android:background="@drawable/report_edittext" />
             <Button
                 android:layout_width="200dp"
                 android:layout_height="50dp"

@@ -80,6 +80,28 @@
                 <TextView
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
+
+                    android:text="Company Name"
+                    android:id="@+id/textView27" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:text="ABC"
+                    android:id="@+id/textView28" />
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
                     android:text="DEL Number"
 
                     android:textStyle="bold"
@@ -305,7 +327,7 @@
                     android:layout_height="15dp"
                     android:src="@drawable/gold"
                     android:layout_marginLeft="5dp"
-                    android:id="@+id/image4" />
+                    android:id="@+id/mIvSegmentImage" />
             </RadioGroup>
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -334,32 +356,12 @@
                     android:src="@drawable/active"
                     android:id="@+id/image2" />
             </RadioGroup>
+
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-
-                    android:text="Calling Status"
-                    android:id="@+id/textView27" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="20dp"
-                    android:text="null"
-                    android:id="@+id/textView28" />
-            </RadioGroup>
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <TextView
